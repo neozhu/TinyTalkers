@@ -1,8 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Award, BookOpen, Heart, Star } from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { Award, BookOpen, Heart, Star, Check } from "lucide-react";
 
 const TeacherTeam = () => {
   const teachers = [
@@ -10,42 +16,44 @@ const TeacherTeam = () => {
       name: "Emily Chen",
       title: "启蒙期主教",
       experience: "8年教学经验",
-      certifications: ["TESOL认证", "儿童心理学"],
-      specialty: "幼儿英语启蒙、TPR教学法",
-      philosophy: "让每个孩子在快乐中爱上英语",
-      avatar: "👩‍🏫",
-      highlights: ["专业幼教背景", "双语家庭育儿经验", "获年度优秀教师"]
+      image: "https://randomuser.me/api/portraits/women/12.jpg",
+      highlights: ["TESOL认证", "儿童心理学背景", "TPR教学专家"],
     },
     {
-      name: "David Wilson",
+      name: "Olivia Brown",
       title: "系统期主教",
       experience: "6年教学经验",
-      certifications: ["TEFL认证", "剑桥英语证书"],
-      specialty: "语法教学、阅读写作",
-      philosophy: "用系统化方法构建英语思维",
-      avatar: "👨‍🎓",
-      highlights: ["英语专业硕士", "英国留学背景", "学生考试通过率98%"]
+      image: "https://randomuser.me/api/portraits/women/45.jpg",
+      highlights: ["英语教育硕士", "剑桥英语认证", "阅读写作指导"],
     },
     {
-      name: "Sarah Johnson",
+      name: "Sophia Johnson",
       title: "强化期主教",
       experience: "10年教学经验",
-      certifications: ["TESOL高级", "雅思官方培训师"],
-      specialty: "考试备考、演讲辩论",
-      philosophy: "培养学生的批判性思维和表达能力",
-      avatar: "👩‍💼",
-      highlights: ["国际学校任教经验", "雅思托福专家", "学术写作指导"]
+      image: "https://randomuser.me/api/portraits/women/33.jpg",
+      highlights: ["雅思官方培训师", "演讲辩论教练", "学术写作专家"],
     },
     {
-      name: "Michael Zhang",
+      name: "Mia Davis",
+      title: "课程顾问",
+      experience: "7年教学经验",
+      image: "https://randomuser.me/api/portraits/women/76.jpg",
+      highlights: ["教育技术认证", "课程体系设计", "家校沟通达人"],
+    },
+    {
+      name: "Emma Garcia",
+      title: "教研主管",
+      experience: "9年教学经验",
+      image: "https://randomuser.me/api/portraits/women/19.jpg",
+      highlights: ["双语教研背景", "课堂活动设计", "教师培训导师"],
+    },
+    {
+      name: "Ava Thompson",
       title: "助教主管",
       experience: "5年教学经验",
-      certifications: ["TKT证书", "教育技术认证"],
-      specialty: "课程设计、家校沟通",
-      philosophy: "科技赋能教育，让学习更高效",
-      avatar: "👨‍💻",
-      highlights: ["教育技术专家", "课程体系设计", "家长满意度95%"]
-    }
+      image: "https://randomuser.me/api/portraits/women/52.jpg",
+      highlights: ["教育心理学", "课堂管理", "家长满意度95%"],
+    },
   ];
 
   const teamStats = [
@@ -87,16 +95,16 @@ const TeacherTeam = () => {
           {teamStats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <motion.div
-                key={stat.label}
-                whileHover={{ y: -4 }}
-                className="text-center p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border"
-              >
-                <div className="w-10 h-10 bg-rose-500 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                  <IconComponent className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
+              <motion.div key={stat.label} whileHover={{ y: -4 }}>
+                <Card className="text-center">
+                  <CardContent>
+                    <div className="w-10 h-10 bg-rose-500 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                      <IconComponent className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
+                  </CardContent>
+                </Card>
               </motion.div>
             );
           })}
@@ -112,25 +120,30 @@ const TeacherTeam = () => {
               transition={{ duration: 0.3, delay: index * 0.05 }}
               viewport={{ once: true }}
             >
-              <Card>
-                <CardContent className="p-4 text-center">
-                  {/* Avatar */}
-                  <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
-                    <span className="text-lg font-medium text-muted-foreground">
-                      {teacher.name.split(' ').map(n => n[0]).join('')}
-                    </span>
-                  </div>
-
-                  {/* Name and Title */}
-                  <h3 className="font-semibold text-sm mb-1">
-                    {teacher.name}
-                  </h3>
-                  <p className="text-xs text-muted-foreground mb-2">
+              <Card className="overflow-hidden h-full flex flex-col">
+                <CardHeader className="items-center text-center">
+                  <img
+                    src={teacher.image}
+                    alt={teacher.name}
+                    className="w-24 h-24 rounded-full object-cover mb-3 mx-auto"
+                  />
+                  <CardTitle className="text-sm">{teacher.name}</CardTitle>
+                  <CardDescription className="text-xs">
                     {teacher.title}
-                  </p>
+                  </CardDescription>
                   <p className="text-xs text-muted-foreground">
                     {teacher.experience}
                   </p>
+                </CardHeader>
+                <CardContent className="pt-0">
+                  <ul className="text-xs text-muted-foreground space-y-1 text-left">
+                    {teacher.highlights.map((item) => (
+                      <li key={item} className="flex items-start">
+                        <Check className="w-3 h-3 text-rose-500 mr-2 mt-0.5" />
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </CardContent>
               </Card>
             </motion.div>
@@ -154,21 +167,27 @@ const TeacherTeam = () => {
               用爱心、耐心和专业知识，点亮孩子的英语学习之路。
             </p>
             <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-3xl mb-2">🎯</div>
-                <h4 className="font-semibold mb-2 text-foreground">个性化教学</h4>
-                <p className="text-sm text-muted-foreground">根据每个孩子的特点制定学习方案</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-3xl mb-2">💡</div>
-                <h4 className="font-semibold mb-2 text-foreground">启发式学习</h4>
-                <p className="text-sm text-muted-foreground">培养孩子的思考能力和创造力</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-3xl mb-2">🤝</div>
-                <h4 className="font-semibold mb-2 text-foreground">家校共育</h4>
-                <p className="text-sm text-muted-foreground">与家长密切配合，共同促进成长</p>
-              </div>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-2">🎯</div>
+                  <h4 className="font-semibold mb-2 text-foreground">个性化教学</h4>
+                  <p className="text-sm text-muted-foreground">根据每个孩子的特点制定学习方案</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-2">💡</div>
+                  <h4 className="font-semibold mb-2 text-foreground">启发式学习</h4>
+                  <p className="text-sm text-muted-foreground">培养孩子的思考能力和创造力</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-2">🤝</div>
+                  <h4 className="font-semibold mb-2 text-foreground">家校共育</h4>
+                  <p className="text-sm text-muted-foreground">与家长密切配合，共同促进成长</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </motion.div>

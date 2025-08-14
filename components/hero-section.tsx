@@ -12,7 +12,7 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-orange-50 overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center bg-rose-50 overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute top-20 left-20 w-32 h-32 bg-blue-500 rounded-full"></div>
@@ -36,11 +36,9 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
             >
-              <span className="bg-gradient-to-r from-blue-600 to-orange-500 bg-clip-text text-transparent">
-                双语未来
-              </span>
+              <span className="text-rose-600">自信说英语</span>
               <br />
-              从小开始！
+              让世界触手可及
             </motion.h1>
 
             <motion.p
@@ -50,10 +48,10 @@ const HeroSection = () => {
               className="text-xl sm:text-2xl text-gray-600 mt-6 font-medium"
             >
               <span className="text-blue-600">启蒙（3–6岁）</span> |{" "}
-              <span className="text-green-600">系统（6–10岁）</span> |{" "}
+              <span className="text-green-600">进阶（6–10岁）</span> |{" "}
               <span className="text-orange-600">强化（10岁+）</span>
               <br />
-              三阶段全覆盖
+              三阶段科学规划
             </motion.p>
 
             <motion.p
@@ -62,7 +60,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg text-gray-600 mt-4"
             >
-              小班制互动教学 · 情景化课堂 · 家校结合 · 成果可见
+              沉浸式小班 · 外教领读 · 家校共育 · 成果看得见
             </motion.p>
 
             <motion.div
@@ -74,7 +72,7 @@ const HeroSection = () => {
               <Button
                 size="lg"
                 onClick={() => scrollToSection("booking")}
-                className="text-lg px-8 py-6 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
+                className="text-lg px-8 py-6 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105"
               >
                 立即预约试听
               </Button>
@@ -82,7 +80,7 @@ const HeroSection = () => {
                 size="lg"
                 variant="outline"
                 onClick={() => scrollToSection("courses")}
-                className="text-lg px-8 py-6 border-2 border-blue-600 text-blue-600 hover:bg-blue-50 transition-all duration-300"
+                className="text-lg px-8 py-6 border-2 border-rose-600 text-rose-600 hover:bg-rose-50 transition-all duration-300"
               >
                 了解课程体系
               </Button>
@@ -119,9 +117,9 @@ const HeroSection = () => {
           >
             <div className="relative bg-white rounded-2xl shadow-2xl p-8 transform rotate-2 hover:rotate-0 transition-transform duration-500">
               {/* Placeholder for hero image */}
-              <div className="aspect-[4/3] bg-gradient-to-br from-blue-100 to-orange-100 rounded-xl flex items-center justify-center">
+              <div className="aspect-[4/3] bg-rose-100 rounded-xl flex items-center justify-center">
                 <div className="text-center">
-                  <div className="w-24 h-24 bg-gradient-to-br from-blue-500 to-orange-400 rounded-full mx-auto mb-4 flex items-center justify-center">
+                  <div className="w-24 h-24 bg-rose-500 rounded-full mx-auto mb-4 flex items-center justify-center">
                     <span className="text-white text-2xl font-bold">🎓</span>
                   </div>
                   <p className="text-gray-600 font-medium">

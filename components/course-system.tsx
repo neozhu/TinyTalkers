@@ -111,8 +111,8 @@ const CourseSystem = () => {
                 whileHover={{ scale: 1.02 }}
                 className="h-full"
               >
-                <Card className="h-full bg-card hover:shadow-md transition-all duration-300">
-                  <CardHeader className="pb-4">
+                <Card>
+                  <CardHeader>
                     <div className="flex items-center justify-between mb-4">
                       <div className="w-12 h-12 rounded-lg bg-rose-500 flex items-center justify-center">
                         <IconComponent className="w-6 h-6 text-white" />
@@ -130,7 +130,7 @@ const CourseSystem = () => {
                     </CardDescription>
                   </CardHeader>
 
-                  <CardContent className="space-y-6">
+                  <CardContent>
                     {/* Goals */}
                     <div>
                       <div className="flex items-center mb-3">
@@ -189,10 +189,7 @@ const CourseSystem = () => {
                     </div>
 
                     {/* CTA Button */}
-                    <Button 
-                      onClick={scrollToBooking}
-                      className="w-full bg-rose-600 hover:bg-rose-700"
-                    >
+                    <Button onClick={scrollToBooking} className="w-full">
                       立即预约试听
                     </Button>
                   </CardContent>
@@ -217,11 +214,7 @@ const CourseSystem = () => {
             <p className="text-lg text-muted-foreground mb-6">
               我们提供免费英语水平测试，为您的孩子量身定制学习方案
             </p>
-            <Button 
-              size="lg"
-              onClick={scrollToBooking}
-              className="bg-rose-600 hover:bg-rose-700"
-            >
+            <Button size="lg" onClick={scrollToBooking}>
               预约免费测试
             </Button>
           </div>

@@ -8,6 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { MessageCircle, Phone, Clock } from "lucide-react";
 
 const FAQSection = () => {
@@ -134,24 +135,23 @@ const FAQSection = () => {
           {contactOptions.map((option, index) => {
             const IconComponent = option.icon;
             return (
-              <div
-                key={option.title}
-                className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-orange-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  <IconComponent className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{option.title}</h3>
-                <p className="text-sm text-gray-600 mb-4">{option.description}</p>
-                <Button
-                  onClick={scrollToBooking}
-                  variant="outline"
-                  size="sm"
-                  className="border-blue-600 text-blue-600 hover:bg-blue-50"
-                >
-                  {option.action}
-                </Button>
-              </div>
+              <Card key={option.title} className="text-center">
+                <CardContent>
+                  <div className="w-12 h-12 bg-rose-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                    <IconComponent className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{option.title}</h3>
+                  <p className="text-sm text-gray-600 mb-4">{option.description}</p>
+                  <Button
+                    onClick={scrollToBooking}
+                    variant="outline"
+                    size="sm"
+                    className="border-rose-600 text-rose-600 hover:bg-rose-50"
+                  >
+                    {option.action}
+                  </Button>
+                </CardContent>
+              </Card>
             );
           })}
         </motion.div>
@@ -164,7 +164,7 @@ const FAQSection = () => {
           viewport={{ once: true }}
           className="text-center"
         >
-          <div className="bg-gradient-to-r from-blue-600 to-orange-500 rounded-2xl p-8 text-white">
+          <div className="bg-rose-500 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               还有其他问题？
             </h3>
@@ -176,7 +176,7 @@ const FAQSection = () => {
             <Button
               onClick={scrollToBooking}
               size="lg"
-              className="bg-white text-blue-600 hover:bg-gray-100 font-semibold"
+              className="bg-white text-rose-600 hover:bg-gray-100 font-semibold"
             >
               立即咨询
             </Button>
