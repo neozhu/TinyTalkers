@@ -62,7 +62,7 @@ const Footer = () => {
             className="lg:col-span-1"
           >
             <div className="flex items-center space-x-2 mb-6">
-              <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-orange-400 rounded-lg flex items-center justify-center">
+              <div className="w-10 h-10 bg-rose-500 rounded-lg flex items-center justify-center">
                 <span className="text-white font-bold">T</span>
               </div>
               <div>
@@ -153,7 +153,7 @@ const Footer = () => {
             <Button
               onClick={() => scrollToSection("booking")}
               size="lg"
-              className="bg-gradient-to-r from-blue-600 to-orange-500 hover:from-blue-700 hover:to-orange-600 px-8 py-3 text-lg"
+              className="px-8 py-3 text-lg"
             >
               立即预约试听
             </Button>

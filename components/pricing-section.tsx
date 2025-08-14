@@ -108,16 +108,16 @@ const PricingSection = () => {
           {offers.map((offer, index) => {
             const IconComponent = offer.icon;
             return (
-              <motion.div
-                key={offer.title}
-                whileHover={{ y: -4 }}
-                className="text-center p-5 bg-card rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border"
-              >
-                <div className="w-12 h-12 bg-rose-500 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                  <IconComponent className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="text-base font-bold text-foreground mb-2">{offer.title}</h3>
-                <p className="text-xs text-muted-foreground">{offer.description}</p>
+              <motion.div key={offer.title} whileHover={{ y: -4 }}>
+                <Card className="text-center">
+                  <CardContent>
+                    <div className="w-12 h-12 bg-rose-500 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                      <IconComponent className="w-6 h-6 text-white" />
+                    </div>
+                    <h3 className="text-base font-bold text-foreground mb-2">{offer.title}</h3>
+                    <p className="text-xs text-muted-foreground">{offer.description}</p>
+                  </CardContent>
+                </Card>
               </motion.div>
             );
           })}
@@ -143,8 +143,8 @@ const PricingSection = () => {
                 </div>
               )}
               
-              <Card className={`h-full ${plan.popular ? 'border-rose-500 border-2 shadow-md' : ''} hover:shadow-md transition-all duration-300`}>
-                <CardHeader className="text-center pb-4">
+              <Card className="h-full">
+                <CardHeader>
                   <CardTitle className="text-xl font-bold text-foreground mb-2">
                     {plan.stage}
                   </CardTitle>
@@ -157,7 +157,7 @@ const PricingSection = () => {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
+                <CardContent>
                   <ul className="space-y-3">
                     {plan.features.map((feature, i) => (
                       <li key={i} className="flex items-center text-sm text-foreground">
@@ -169,11 +169,7 @@ const PricingSection = () => {
 
                   <Button
                     onClick={scrollToBooking}
-                    className={`w-full mt-6 ${
-                      plan.popular
-                        ? 'bg-rose-600 hover:bg-rose-700'
-                        : 'bg-foreground hover:bg-foreground/90'
-                    }`}
+                    className="w-full mt-6"
                   >
                     立即预约试听
                   </Button>
@@ -217,22 +213,20 @@ const PricingSection = () => {
             </div>
             
             <div className="text-center">
-              <div className="bg-card rounded-xl p-6 shadow-sm border">
-                <div className="text-3xl mb-4">📞</div>
-                <h4 className="text-lg font-bold text-foreground mb-2">
-                  专业课程顾问咨询
-                </h4>
-                <p className="text-muted-foreground mb-4">
-                  获取详细价格方案和个性化学习建议
-                </p>
-                <Button
-                  onClick={scrollToBooking}
-                  variant="outline"
-                  className="border-rose-600 text-rose-600 hover:bg-rose-50"
-                >
-                  立即咨询
-                </Button>
-              </div>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-4">📞</div>
+                  <h4 className="text-lg font-bold text-foreground mb-2">
+                    专业课程顾问咨询
+                  </h4>
+                  <p className="text-muted-foreground mb-4">
+                    获取详细价格方案和个性化学习建议
+                  </p>
+                  <Button onClick={scrollToBooking} variant="outline">
+                    立即咨询
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </motion.div>

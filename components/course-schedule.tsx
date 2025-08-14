@@ -272,7 +272,7 @@ const CourseSchedule = () => {
           transition={{ duration: 0.4 }}
           className="text-center mb-12"
         >
-          <div className="bg-gradient-to-r from-blue-50 to-orange-50 rounded-2xl p-8">
+          <div className="bg-rose-50 rounded-2xl p-8">
             <h3 className="text-2xl font-bold text-gray-900 mb-2">
               {currentStage.title}
             </h3>
@@ -298,16 +298,15 @@ const CourseSchedule = () => {
           {features.map((feature, index) => {
             const IconComponent = feature.icon;
             return (
-              <div
-                key={feature.title}
-                className="text-center p-6 bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow"
-              >
-                <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-orange-400 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                  <IconComponent className="w-6 h-6 text-white" />
-                </div>
-                <h3 className="font-semibold text-gray-900 mb-2">{feature.title}</h3>
-                <p className="text-sm text-gray-600">{feature.description}</p>
-              </div>
+              <Card className="text-center" key={feature.title}>
+                <CardContent>
+                  <div className="w-12 h-12 bg-rose-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
+                    <IconComponent className="w-6 h-6 text-white" />
+                  </div>
+                  <h3 className="font-semibold text-gray-900 mb-2">{feature.title}</h3>
+                  <p className="text-sm text-gray-600">{feature.description}</p>
+                </CardContent>
+              </Card>
             );
           })}
         </motion.div>
@@ -328,8 +327,8 @@ const CourseSchedule = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full bg-white border-l-4 border-l-blue-500 hover:shadow-lg transition-all duration-300">
-                <CardHeader className="pb-4">
+              <Card className="h-full">
+                <CardHeader>
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-xl font-bold text-gray-900">
                       {item.month}
@@ -341,7 +340,7 @@ const CourseSchedule = () => {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent className="space-y-4">
+                <CardContent>
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
                       <BookOpen className="w-4 h-4 mr-2 text-gray-600" />
@@ -387,7 +386,7 @@ const CourseSchedule = () => {
           viewport={{ once: true }}
           className="mt-16 text-center"
         >
-          <div className="bg-gradient-to-r from-blue-500 to-orange-400 rounded-2xl p-8 text-white">
+          <div className="bg-rose-500 rounded-2xl p-8 text-white">
             <h3 className="text-2xl font-bold mb-4">
               完整学年，系统进阶
             </h3>

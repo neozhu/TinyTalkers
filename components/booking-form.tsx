@@ -113,7 +113,7 @@ const BookingForm = () => {
 
   if (isSubmitted) {
     return (
-      <section id="booking" className="py-20 bg-gradient-to-br from-blue-50 to-orange-50">
+      <section id="booking" className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -121,8 +121,8 @@ const BookingForm = () => {
             transition={{ duration: 0.6 }}
             className="text-center"
           >
-            <Card className="max-w-md mx-auto bg-white shadow-xl">
-              <CardContent className="p-8">
+            <Card className="max-w-md mx-auto">
+              <CardContent>
                 <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
                   <CheckCircle className="w-8 h-8 text-green-600" />
                 </div>
@@ -134,7 +134,7 @@ const BookingForm = () => {
                 </p>
                 <Button
                   onClick={() => setIsSubmitted(false)}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                  className="w-full"
                 >
                   继续了解课程
                 </Button>
@@ -147,7 +147,7 @@ const BookingForm = () => {
   }
 
   return (
-    <section id="booking" className="py-20 bg-gradient-to-br from-blue-50 to-orange-50">
+    <section id="booking" className="py-20">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Section Header */}
         <motion.div
@@ -183,7 +183,7 @@ const BookingForm = () => {
                   const IconComponent = benefit.icon;
                   return (
                     <div key={benefit.title} className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-r from-blue-500 to-orange-400 rounded-lg flex items-center justify-center flex-shrink-0">
+                      <div className="w-12 h-12 bg-rose-500 rounded-lg flex items-center justify-center flex-shrink-0">
                         <IconComponent className="w-6 h-6 text-white" />
                       </div>
                       <div>
@@ -228,7 +228,7 @@ const BookingForm = () => {
             transition={{ duration: 0.6, delay: 0.4 }}
             viewport={{ once: true }}
           >
-            <Card className="bg-white shadow-xl">
+            <Card>
               <CardHeader>
                 <CardTitle className="text-2xl font-bold text-gray-900">
                   预约试听课程
@@ -357,7 +357,7 @@ const BookingForm = () => {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-lg py-6"
+                    className="w-full text-lg py-6"
                   >
                     {isSubmitting ? (
                       <div className="flex items-center">

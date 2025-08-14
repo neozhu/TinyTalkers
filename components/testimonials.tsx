@@ -105,13 +105,13 @@ const Testimonials = () => {
           className="grid grid-cols-4 gap-4 mb-16"
         >
           {stats.map((stat, index) => (
-            <motion.div
-              key={stat.label}
-              whileHover={{ y: -4 }}
-              className="text-center p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border"
-            >
-              <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
-              <div className="text-xs text-muted-foreground">{stat.label}</div>
+            <motion.div key={stat.label} whileHover={{ y: -4 }}>
+              <Card className="text-center">
+                <CardContent>
+                  <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
+                  <div className="text-xs text-muted-foreground">{stat.label}</div>
+                </CardContent>
+              </Card>
             </motion.div>
           ))}
         </motion.div>
@@ -127,8 +127,8 @@ const Testimonials = () => {
               viewport={{ once: true }}
               whileHover={{ y: -4 }}
             >
-              <Card className="h-full bg-card shadow-sm hover:shadow-md transition-all duration-300 overflow-hidden">
-                <CardContent className="p-5">
+              <Card className="h-full overflow-hidden">
+                <CardContent>
                   {/* Rating */}
                   <div className="flex items-center mb-3">
                     {[...Array(testimonial.rating)].map((_, i) => (
@@ -189,22 +189,30 @@ const Testimonials = () => {
             </p>
             
             <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-2xl font-bold mb-1 text-foreground">85%</div>
-                <div className="text-sm text-muted-foreground">KET/PET通过率</div>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-2xl font-bold mb-1 text-foreground">50+</div>
-                <div className="text-sm text-muted-foreground">英语竞赛获奖</div>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-2xl font-bold mb-1 text-foreground">90%</div>
-                <div className="text-sm text-muted-foreground">升入理想学校</div>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-2xl font-bold mb-1 text-foreground">3年</div>
-                <div className="text-sm text-muted-foreground">平均学习周期</div>
-              </div>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-2xl font-bold mb-1 text-foreground">85%</div>
+                  <div className="text-sm text-muted-foreground">KET/PET通过率</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-2xl font-bold mb-1 text-foreground">50+</div>
+                  <div className="text-sm text-muted-foreground">英语竞赛获奖</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-2xl font-bold mb-1 text-foreground">90%</div>
+                  <div className="text-sm text-muted-foreground">升入理想学校</div>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-2xl font-bold mb-1 text-foreground">3年</div>
+                  <div className="text-sm text-muted-foreground">平均学习周期</div>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </motion.div>

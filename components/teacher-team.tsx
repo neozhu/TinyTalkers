@@ -87,16 +87,16 @@ const TeacherTeam = () => {
           {teamStats.map((stat, index) => {
             const IconComponent = stat.icon;
             return (
-              <motion.div
-                key={stat.label}
-                whileHover={{ y: -4 }}
-                className="text-center p-4 bg-card rounded-lg shadow-sm hover:shadow-md transition-all duration-300 border"
-              >
-                <div className="w-10 h-10 bg-rose-500 rounded-lg mx-auto mb-3 flex items-center justify-center">
-                  <IconComponent className="w-5 h-5 text-white" />
-                </div>
-                <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
-                <div className="text-xs text-muted-foreground">{stat.label}</div>
+              <motion.div key={stat.label} whileHover={{ y: -4 }}>
+                <Card className="text-center">
+                  <CardContent>
+                    <div className="w-10 h-10 bg-rose-500 rounded-lg mx-auto mb-3 flex items-center justify-center">
+                      <IconComponent className="w-5 h-5 text-white" />
+                    </div>
+                    <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
+                    <div className="text-xs text-muted-foreground">{stat.label}</div>
+                  </CardContent>
+                </Card>
               </motion.div>
             );
           })}
@@ -113,7 +113,7 @@ const TeacherTeam = () => {
               viewport={{ once: true }}
             >
               <Card>
-                <CardContent className="p-4 text-center">
+                <CardContent className="text-center">
                   {/* Avatar */}
                   <div className="w-16 h-16 bg-muted rounded-full flex items-center justify-center mx-auto mb-3">
                     <span className="text-lg font-medium text-muted-foreground">
@@ -154,21 +154,27 @@ const TeacherTeam = () => {
               用爱心、耐心和专业知识，点亮孩子的英语学习之路。
             </p>
             <div className="grid sm:grid-cols-3 gap-6 max-w-4xl mx-auto">
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-3xl mb-2">🎯</div>
-                <h4 className="font-semibold mb-2 text-foreground">个性化教学</h4>
-                <p className="text-sm text-muted-foreground">根据每个孩子的特点制定学习方案</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-3xl mb-2">💡</div>
-                <h4 className="font-semibold mb-2 text-foreground">启发式学习</h4>
-                <p className="text-sm text-muted-foreground">培养孩子的思考能力和创造力</p>
-              </div>
-              <div className="bg-card rounded-lg p-4 border shadow-sm">
-                <div className="text-3xl mb-2">🤝</div>
-                <h4 className="font-semibold mb-2 text-foreground">家校共育</h4>
-                <p className="text-sm text-muted-foreground">与家长密切配合，共同促进成长</p>
-              </div>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-2">🎯</div>
+                  <h4 className="font-semibold mb-2 text-foreground">个性化教学</h4>
+                  <p className="text-sm text-muted-foreground">根据每个孩子的特点制定学习方案</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-2">💡</div>
+                  <h4 className="font-semibold mb-2 text-foreground">启发式学习</h4>
+                  <p className="text-sm text-muted-foreground">培养孩子的思考能力和创造力</p>
+                </CardContent>
+              </Card>
+              <Card>
+                <CardContent className="text-center">
+                  <div className="text-3xl mb-2">🤝</div>
+                  <h4 className="font-semibold mb-2 text-foreground">家校共育</h4>
+                  <p className="text-sm text-muted-foreground">与家长密切配合，共同促进成长</p>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </motion.div>

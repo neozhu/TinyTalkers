@@ -46,7 +46,7 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-16">
           {/* Logo */}
           <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-orange-400 rounded-lg flex items-center justify-center">
+            <div className="w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center">
               <span className="text-white font-bold text-sm">T</span>
             </div>
             <span className="text-xl font-bold text-gray-900">
@@ -69,9 +69,8 @@ const Navigation = () => {
 
           {/* CTA Button */}
           <div className="hidden md:block">
-            <Button 
+            <Button
               onClick={() => scrollToSection("booking")}
-              className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
             >
               立即预约
             </Button>
@@ -102,9 +101,9 @@ const Navigation = () => {
                 </button>
               ))}
               <div className="px-3 py-2">
-                <Button 
+                <Button
                   onClick={() => scrollToSection("booking")}
-                  className="w-full bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800"
+                  className="w-full"
                 >
                   立即预约
                 </Button>
