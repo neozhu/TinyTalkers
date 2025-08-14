@@ -2,10 +2,10 @@
 
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Star, Quote } from "lucide-react";
+import { Star } from "lucide-react";
 
 const Testimonials = () => {
-  const testimonials = [
+  const baseTestimonials = [
     {
       content: "Emma在TinyTalkers学了一年，从一开始的害羞不敢说，到现在能自信地用英语表达想法。老师们很有耐心，教学方法也很有趣，孩子每次上课都很开心！",
       parentName: "王妈妈",
@@ -68,6 +68,55 @@ const Testimonials = () => {
     }
   ];
 
+  const testimonials = Array.from(
+    { length: 20 },
+    (_, i) => baseTestimonials[i % baseTestimonials.length]
+  );
+  const topRow = testimonials.slice(0, 10);
+  const bottomRow = testimonials.slice(10);
+
+  const TestimonialItem = ({
+    testimonial,
+  }: {
+    testimonial: (typeof baseTestimonials)[number];
+  }) => (
+    <Card className="w-64 shrink-0">
+      <CardContent>
+        <div className="flex items-center mb-3">
+          {[...Array(testimonial.rating)].map((_, i) => (
+            <Star key={i} className="w-3 h-3 text-yellow-500 fill-current" />
+          ))}
+        </div>
+        <p className="text-foreground text-sm leading-relaxed mb-4 line-clamp-4">
+          "{testimonial.content}"
+        </p>
+        <div className="flex items-center justify-between pt-3 border-t">
+          <div className="flex items-center">
+            <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-sm mr-2">
+              {testimonial.avatar}
+            </div>
+            <div>
+              <div className="text-sm font-medium text-foreground">
+                {testimonial.parentName}
+              </div>
+              <div className="text-xs text-muted-foreground">
+                {testimonial.childName} · {testimonial.childAge}
+              </div>
+            </div>
+          </div>
+          <div className="text-right">
+            <div className="text-xs font-medium text-rose-600">
+              {testimonial.stage}
+            </div>
+            <div className="text-xs text-muted-foreground">
+              {testimonial.highlight}
+            </div>
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  );
+
   const stats = [
     { number: "1000+", label: "在读学员" },
     { number: "98%", label: "家长满意度" },
@@ -116,61 +165,25 @@ const Testimonials = () => {
           ))}
         </motion.div>
 
-        {/* Testimonials Grid */}
-        <div className="grid xl:grid-cols-3 lg:grid-cols-2 grid-cols-1 gap-6">
-          {testimonials.map((testimonial, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              viewport={{ once: true }}
-              whileHover={{ y: -4 }}
-            >
-              <Card className="h-full overflow-hidden">
-                <CardContent>
-                  {/* Rating */}
-                  <div className="flex items-center mb-3">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="w-3 h-3 text-yellow-500 fill-current" />
-                    ))}
-                  </div>
-
-                  {/* Content */}
-                  <p className="text-foreground text-sm leading-relaxed mb-4 line-clamp-4">
-                    "{testimonial.content}"
-                  </p>
-
-                  {/* Parent and Child Info */}
-                  <div className="flex items-center justify-between pt-3 border-t">
-                    <div className="flex items-center">
-                      <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-sm mr-2">
-                        {testimonial.avatar}
-                      </div>
-                      <div>
-                        <div className="text-sm font-medium text-foreground">
-                          {testimonial.parentName}
-                        </div>
-                        <div className="text-xs text-muted-foreground">
-                          {testimonial.childName} · {testimonial.childAge}
-                        </div>
-                      </div>
-                    </div>
-                    
-                    <div className="text-right">
-                      <div className="text-xs font-medium text-rose-600">
-                        {testimonial.stage}
-                      </div>
-                      <div className="text-xs text-muted-foreground">
-                        {testimonial.highlight}
-                      </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
-        </div>
+        {/* Testimonials Marquee */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          viewport={{ once: true }}
+          className="space-y-6 overflow-hidden mb-16"
+        >
+          <div className="flex gap-6 animate-marquee-left">
+            {[...topRow, ...topRow].map((testimonial, index) => (
+              <TestimonialItem testimonial={testimonial} key={index} />
+            ))}
+          </div>
+          <div className="flex gap-6 animate-marquee-right">
+            {[...bottomRow, ...bottomRow].map((testimonial, index) => (
+              <TestimonialItem testimonial={testimonial} key={index} />
+            ))}
+          </div>
+        </motion.div>
 
         {/* Success Stories */}
         <motion.div
