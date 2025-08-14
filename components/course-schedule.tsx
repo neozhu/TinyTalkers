@@ -2,9 +2,9 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, BookOpen, Users, Sparkles, Home } from "lucide-react";
+import { Calendar, BookOpen, Users, Sparkles } from "lucide-react";
 
 const CourseSchedule = () => {
   const [activeStage, setActiveStage] = useState<'beginner' | 'systematic' | 'advanced'>('beginner');
@@ -317,70 +317,31 @@ const CourseSchedule = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="grid lg:grid-cols-2 xl:grid-cols-3 gap-6"
         >
-          {currentStage.schedule.map((item, index) => (
-            <motion.div
-              key={`${activeStage}-${item.month}`}
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: index * 0.1 }}
-              whileHover={{ scale: 1.02 }}
-            >
-              <Card className="h-full overflow-hidden flex flex-col">
-                <img
-                  src={`https://source.unsplash.com/seed/${activeStage}-${index}/400x200?kid`}
-                  alt={item.theme}
-                  className="w-full h-32 object-cover"
-                />
-                <CardHeader className="pb-2">
-                  <div className="flex items-center justify-between">
-                    <CardTitle className="text-xl font-bold text-gray-900">
-                      {item.month}
-                    </CardTitle>
-                    <div className="text-2xl">{item.icon}</div>
-                  </div>
-                  <CardDescription className="text-lg font-medium text-blue-600">
-                    {item.theme}
-                  </CardDescription>
-                </CardHeader>
-
-                <CardContent className="flex flex-col flex-1">
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                      <BookOpen className="w-4 h-4 mr-2 text-gray-600" />
-                      核心技能
-                    </h4>
-                    <p className="text-sm text-gray-700">{item.skills}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                      <Sparkles className="w-4 h-4 mr-2 text-gray-600" />
-                      课堂活动
-                    </h4>
-                    <p className="text-sm text-gray-700">{item.activity}</p>
-                  </div>
-
-                  <div>
-                    <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
-                      <Home className="w-4 h-4 mr-2 text-gray-600" />
-                      家庭延伸
-                    </h4>
-                    <p className="text-sm text-gray-700">{item.homeExtension}</p>
-                  </div>
-
-                  <div className="pt-4 mt-auto border-t border-gray-100">
-                    <div className="flex items-center justify-between text-xs text-gray-500">
-                      <span>{currentStage.frequency}</span>
-                      <span>小班互动</span>
-                      <span>成果展示</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </motion.div>
-          ))}
+          <ol className="relative border-l ml-4 pl-8">
+            {currentStage.schedule.map((item, index) => (
+              <motion.li
+                key={`${activeStage}-${item.month}`}
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: index * 0.1 }}
+                className="mb-10 ml-6"
+              >
+                <span className="absolute -left-4 flex items-center justify-center w-8 h-8 bg-rose-500 rounded-full text-white">
+                  {item.icon}
+                </span>
+                <time className="mb-1 text-sm font-medium leading-none text-gray-900">
+                  {item.month}
+                </time>
+                <h3 className="text-lg font-semibold text-rose-600 mb-2">
+                  {item.theme}
+                </h3>
+                <p className="text-sm text-gray-700 mb-1">核心技能：{item.skills}</p>
+                <p className="text-sm text-gray-700 mb-1">课堂活动：{item.activity}</p>
+                <p className="text-sm text-gray-700">家庭延伸：{item.homeExtension}</p>
+              </motion.li>
+            ))}
+          </ol>
         </motion.div>
 
         {/* Bottom Info */}

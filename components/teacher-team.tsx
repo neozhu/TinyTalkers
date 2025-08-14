@@ -125,7 +125,7 @@ const TeacherTeam = () => {
                   <img
                     src={teacher.image}
                     alt={teacher.name}
-                    className="w-24 h-24 rounded-full object-cover mb-3"
+                    className="w-24 h-24 rounded-full object-cover mb-3 mx-auto"
                   />
                   <CardTitle className="text-sm">{teacher.name}</CardTitle>
                   <CardDescription className="text-xs">
