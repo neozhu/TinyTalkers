@@ -36,9 +36,9 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
             >
-              <span className="text-rose-600">双语未来</span>
+              <span className="text-rose-600">自信说英语</span>
               <br />
-              从小开始！
+              让世界触手可及
             </motion.h1>
 
             <motion.p
@@ -48,10 +48,10 @@ const HeroSection = () => {
               className="text-xl sm:text-2xl text-gray-600 mt-6 font-medium"
             >
               <span className="text-blue-600">启蒙（3–6岁）</span> |{" "}
-              <span className="text-green-600">系统（6–10岁）</span> |{" "}
+              <span className="text-green-600">进阶（6–10岁）</span> |{" "}
               <span className="text-orange-600">强化（10岁+）</span>
               <br />
-              三阶段全覆盖
+              三阶段科学规划
             </motion.p>
 
             <motion.p
@@ -60,7 +60,7 @@ const HeroSection = () => {
               transition={{ duration: 0.8, delay: 0.6 }}
               className="text-lg text-gray-600 mt-4"
             >
-              小班制互动教学 · 情景化课堂 · 家校结合 · 成果可见
+              沉浸式小班 · 外教领读 · 家校共育 · 成果看得见
             </motion.p>
 
             <motion.div
