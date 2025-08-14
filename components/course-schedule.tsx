@@ -327,8 +327,13 @@ const CourseSchedule = () => {
               transition={{ duration: 0.6, delay: index * 0.1 }}
               whileHover={{ scale: 1.02 }}
             >
-              <Card className="h-full">
-                <CardHeader>
+              <Card className="h-full overflow-hidden flex flex-col">
+                <img
+                  src={`https://source.unsplash.com/seed/${activeStage}-${index}/400x200?kid`}
+                  alt={item.theme}
+                  className="w-full h-32 object-cover"
+                />
+                <CardHeader className="pb-2">
                   <div className="flex items-center justify-between">
                     <CardTitle className="text-xl font-bold text-gray-900">
                       {item.month}
@@ -340,7 +345,7 @@ const CourseSchedule = () => {
                   </CardDescription>
                 </CardHeader>
 
-                <CardContent>
+                <CardContent className="flex flex-col flex-1">
                   <div>
                     <h4 className="font-semibold text-gray-900 mb-2 flex items-center">
                       <BookOpen className="w-4 h-4 mr-2 text-gray-600" />
@@ -365,7 +370,7 @@ const CourseSchedule = () => {
                     <p className="text-sm text-gray-700">{item.homeExtension}</p>
                   </div>
 
-                  <div className="pt-4 border-t border-gray-100">
+                  <div className="pt-4 mt-auto border-t border-gray-100">
                     <div className="flex items-center justify-between text-xs text-gray-500">
                       <span>{currentStage.frequency}</span>
                       <span>小班互动</span>
