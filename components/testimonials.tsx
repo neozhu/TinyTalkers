@@ -1,234 +1,177 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Card, CardContent } from "@/components/ui/card";
-import { Star } from "lucide-react";
+import Image from "next/image";
+import { Star, MessageSquareQuote, CheckCircle2, ShieldCheck } from "lucide-react";
+import { TestimonialsQuoteWatermark } from "@/components/background-decorations";
 
 const Testimonials = () => {
   const baseTestimonials = [
     {
-      content: "Emma在TinyTalkers学了一年，从一开始的害羞不敢说，到现在能自信地用英语表达想法。老师们很有耐心，教学方法也很有趣，孩子每次上课都很开心！",
+      content: "Emma在TinyTalkers学了一年，从一开始的害羞不敢说，到现在能自信地用英语表达想法。外教很有耐心，TPR教学法让孩子每次上课都在笑声中度过，完全没有死记硬背的压力！",
       parentName: "王妈妈",
       childName: "Emma",
       childAge: "5岁",
-      avatar: "👩",
-      rating: 5,
+      avatar: "/parents/parent-1.jpg",
       stage: "启蒙期",
-      highlight: "从害羞到自信"
+      duration: "在读 1 年",
+      highlight: "从抗拒开口到主动用英文问好"
     },
     {
-      content: "儿子Leo在这里学会了自然拼读，现在看到英语单词就能读出来，阅读兴趣大大提高。小班制教学让每个孩子都能得到关注，值得推荐！",
+      content: "儿子Leo在这里系统学会了自然拼读，现在看到任何原版英文绘本都能顺畅读出来。6人小班制让每个孩子每节课有至少15次独立开口机会，学习效果非常直观，强烈推荐！",
       parentName: "李爸爸",
       childName: "Leo",
       childAge: "7岁",
-      avatar: "👨",
-      rating: 5,
+      avatar: "/parents/parent-2.jpg",
       stage: "系统学习期",
-      highlight: "自然拼读突破"
+      duration: "在读 8 个月",
+      highlight: "自然拼读自主阅读突破"
     },
     {
-      content: "女儿Sophia准备考PET，在老师的指导下顺利通过了考试。不仅英语水平提高了，学习方法也更加科学有效。感谢所有老师的用心教导！",
+      content: "女儿Sophia准备考剑桥PET，在老师的针对性阅读与写作工作坊辅导下顺利高分通过！不仅学术英语提升显著，连逻辑思维和公众演讲气场都变强了，非常感恩老师们的悉心教导。",
       parentName: "张妈妈",
       childName: "Sophia",
       childAge: "11岁",
-      avatar: "👩‍💼",
-      rating: 5,
+      avatar: "/parents/parent-3.jpg",
       stage: "强化期",
-      highlight: "PET考试通过"
+      duration: "在读 2 年",
+      highlight: "高分通过剑桥PET考试"
     },
     {
-      content: "Max在这里不仅学英语，还学会了如何自信地表达自己。老师经常组织各种活动，让孩子在玩中学，在学中成长。家长群里的反馈也很及时。",
+      content: "Max性格好动，以前去过的大班机构根本坐不住。TinyTalkers的情景剧小班太适合他了，角色扮演和小短剧演练让他完全沉浸其中。家长群每节课后都有发音视频和详尽反馈，很放心。",
       parentName: "陈妈妈",
       childName: "Max",
       childAge: "6岁",
-      avatar: "👩‍🎓",
-      rating: 5,
+      avatar: "/parents/parent-4.jpg",
       stage: "启蒙期",
-      highlight: "自信表达能力"
+      duration: "在读 10 个月",
+      highlight: "情景小剧场自信领衔"
     },
     {
-      content: "起初担心孩子适应不了全英文环境，但老师们很专业，循序渐进地引导。现在孩子的发音标准了很多，词汇量也大大增加。",
+      content: "起初担心全英文沉浸课堂孩子会听不懂产生挫败感，但中教助教和外教配合得特别默契，阶梯式过渡非常自然。现在去国外旅行，孩子已经能主动跟店员用英文点冰淇淋了！",
       parentName: "刘爸爸",
       childName: "Chloe",
       childAge: "8岁",
-      avatar: "👨‍💻",
-      rating: 5,
+      avatar: "/parents/parent-5.jpg",
       stage: "系统学习期",
-      highlight: "发音标准提升"
+      duration: "在读 1.5 年",
+      highlight: "真实场景自如生活对话"
     },
     {
-      content: "TinyTalkers的课程设计很科学，从启蒙到系统学习，每个阶段都有明确的目标。孩子学得开心，家长也很放心。强烈推荐给其他家长！",
+      content: "课程体系非常清晰严密，从启蒙到系统学习，每一个月的目标清清楚楚，完全能对应上孩子的成长轨迹。班主任负责又有温度，是我们在少儿英语上做过最满意的投资。",
       parentName: "周妈妈",
       childName: "Ryan",
       childAge: "9岁",
-      avatar: "👩‍⚕️",
-      rating: 5,
+      avatar: "/parents/parent-6.jpg",
       stage: "系统学习期",
-      highlight: "科学课程体系"
+      duration: "在读 1 年半",
+      highlight: "学科阅读理解能力飞跃"
     }
   ];
 
   const testimonials = Array.from(
-    { length: 20 },
+    { length: 18 },
     (_, i) => baseTestimonials[i % baseTestimonials.length]
   );
-  const topRow = testimonials.slice(0, 10);
-  const bottomRow = testimonials.slice(10);
+  const topRow = testimonials.slice(0, 9);
+  const bottomRow = testimonials.slice(9);
 
-  const TestimonialItem = ({
+  const TestimonialCard = ({
     testimonial,
   }: {
     testimonial: (typeof baseTestimonials)[number];
   }) => (
-    <Card className="w-64 shrink-0">
-      <CardContent>
-        <div className="flex items-center mb-3">
-          {[...Array(testimonial.rating)].map((_, i) => (
-            <Star key={i} className="w-3 h-3 text-yellow-500 fill-current" />
-          ))}
+    <div className="w-[340px] sm:w-[380px] shrink-0 p-6 rounded-2xl bg-white border border-stone-200/80 shadow-xs hover:shadow-md hover:border-stone-300 transition-all flex flex-col justify-between">
+      <div>
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-1">
+            {[...Array(5)].map((_, i) => (
+              <Star key={i} className="w-3.5 h-3.5 text-amber-400 fill-amber-400" />
+            ))}
+          </div>
+          <span className="text-[11px] font-semibold px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/50 flex items-center gap-1">
+            <CheckCircle2 className="w-3 h-3" />
+            {testimonial.stage}
+          </span>
         </div>
-        <p className="text-foreground text-sm leading-relaxed mb-4 line-clamp-4">
-          "{testimonial.content}"
+
+        <p className="text-slate-700 text-xs sm:text-sm leading-relaxed mb-4 line-clamp-4">
+          &ldquo;{testimonial.content}&rdquo;
         </p>
-        <div className="flex items-center justify-between pt-3 border-t">
-          <div className="flex items-center">
-            <div className="w-8 h-8 bg-rose-100 rounded-full flex items-center justify-center text-sm mr-2">
-              {testimonial.avatar}
-            </div>
-            <div>
-              <div className="text-sm font-medium text-foreground">
-                {testimonial.parentName}
-              </div>
-              <div className="text-xs text-muted-foreground">
-                {testimonial.childName} · {testimonial.childAge}
-              </div>
-            </div>
+      </div>
+
+      <div className="pt-3 border-t border-stone-100 flex items-center justify-between">
+        <div className="flex items-center gap-3">
+          {/* Real Photo Avatar */}
+          <div className="relative w-10 h-10 rounded-xl overflow-hidden bg-rose-50 ring-1 ring-stone-200 shrink-0">
+            <Image
+              src={testimonial.avatar}
+              alt={testimonial.parentName}
+              width={40}
+              height={40}
+              className="object-cover w-full h-full"
+            />
           </div>
-          <div className="text-right">
-            <div className="text-xs font-medium text-rose-600">
-              {testimonial.stage}
+          <div>
+            <div className="text-xs font-bold text-slate-900 leading-tight">
+              {testimonial.parentName}
             </div>
-            <div className="text-xs text-muted-foreground">
-              {testimonial.highlight}
+            <div className="text-[11px] text-slate-400 leading-tight mt-0.5">
+              {testimonial.childName} · {testimonial.childAge} ({testimonial.duration})
             </div>
           </div>
         </div>
-      </CardContent>
-    </Card>
+
+        <div className="text-right">
+          <span className="text-[10px] font-medium text-slate-500 bg-stone-100 px-2 py-0.5 rounded">
+            {testimonial.highlight}
+          </span>
+        </div>
+      </div>
+    </div>
   );
 
-  const stats = [
-    { number: "1000+", label: "在读学员" },
-    { number: "98%", label: "家长满意度" },
-    { number: "95%", label: "续费率" },
-    { number: "4.9", label: "综合评分" }
-  ];
-
   return (
-    <section id="testimonials" className="py-20 bg-white">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            家长口碑
-          </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            听听其他家长和孩子的真实体验
-            <br />
-            用事实证明我们的教学品质
-          </p>
-        </motion.div>
+    <section id="testimonials" className="py-24 bg-gradient-to-b from-[#FFFDF9] via-stone-50/40 to-[#FFFDF9] border-t border-stone-200/60 overflow-hidden relative">
+      <TestimonialsQuoteWatermark />
+      <div className="relative z-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mb-14 text-center">
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 mb-3">
+          <MessageSquareQuote className="w-3.5 h-3.5 text-[#F05A47]" />
+          <span>真实就读反馈 · 口碑见证力量</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+          来自 1,200+ 家长的真实声音
+        </h2>
+        <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto">
+          让每一个孩子收获闪闪发光的自信与流利表达，是 TinyTalkers 最值得骄傲的成绩。
+        </p>
+      </div>
 
-        {/* Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-4 gap-4 mb-16"
-        >
-          {stats.map((stat, index) => (
-            <motion.div key={stat.label} whileHover={{ y: -4 }}>
-              <Card className="text-center">
-                <CardContent>
-                  <div className="text-2xl font-bold text-foreground mb-1">{stat.number}</div>
-                  <div className="text-xs text-muted-foreground">{stat.label}</div>
-                </CardContent>
-              </Card>
-            </motion.div>
+      {/* Marquee Row 1 */}
+      <div className="relative w-full overflow-hidden mb-6">
+        <div className="flex gap-6 animate-marquee-left">
+          {topRow.map((t, idx) => (
+            <TestimonialCard key={`top-${idx}`} testimonial={t} />
           ))}
-        </motion.div>
+        </div>
+      </div>
 
-        {/* Testimonials Marquee */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="space-y-6 overflow-hidden mb-16"
-        >
-          <div className="flex gap-6 animate-marquee-left">
-            {[...topRow, ...topRow].map((testimonial, index) => (
-              <TestimonialItem testimonial={testimonial} key={index} />
-            ))}
-          </div>
-          <div className="flex gap-6 animate-marquee-right">
-            {[...bottomRow, ...bottomRow].map((testimonial, index) => (
-              <TestimonialItem testimonial={testimonial} key={index} />
-            ))}
-          </div>
-        </motion.div>
+      {/* Marquee Row 2 */}
+      <div className="relative w-full overflow-hidden">
+        <div className="flex gap-6 animate-marquee-right">
+          {bottomRow.map((t, idx) => (
+            <TestimonialCard key={`bottom-${idx}`} testimonial={t} />
+          ))}
+        </div>
+      </div>
 
-        {/* Success Stories */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.8 }}
-          viewport={{ once: true }}
-          className="mt-16"
-        >
-          <div className="bg-rose-50 rounded-2xl p-8 border text-center">
-            <h3 className="text-2xl font-bold mb-4 text-foreground">
-              成功案例
-            </h3>
-            <p className="text-lg text-muted-foreground mb-6">
-              我们的学员在各类英语考试和比赛中屡创佳绩
-            </p>
-            
-            <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-4xl mx-auto">
-              <Card>
-                <CardContent className="text-center">
-                  <div className="text-2xl font-bold mb-1 text-foreground">85%</div>
-                  <div className="text-sm text-muted-foreground">KET/PET通过率</div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="text-center">
-                  <div className="text-2xl font-bold mb-1 text-foreground">50+</div>
-                  <div className="text-sm text-muted-foreground">英语竞赛获奖</div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="text-center">
-                  <div className="text-2xl font-bold mb-1 text-foreground">90%</div>
-                  <div className="text-sm text-muted-foreground">升入理想学校</div>
-                </CardContent>
-              </Card>
-              <Card>
-                <CardContent className="text-center">
-                  <div className="text-2xl font-bold mb-1 text-foreground">3年</div>
-                  <div className="text-sm text-muted-foreground">平均学习周期</div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </motion.div>
+      {/* Trust Quote Banner */}
+      <div className="mt-14 max-w-4xl mx-auto px-4 text-center">
+        <div className="inline-flex items-center gap-2 text-xs text-slate-500 font-medium">
+          <ShieldCheck className="w-4 h-4 text-emerald-600" />
+          <span>所有学员评价均为 TinyTalkers 在读学员家长实名反馈</span>
+        </div>
+      </div>
       </div>
     </section>
   );

@@ -1,9 +1,8 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { Menu, X } from "lucide-react";
+import { Menu, X, Sparkles, MessageCircle } from "lucide-react";
 
 const Navigation = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,7 +10,7 @@ const Navigation = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
+      setIsScrolled(window.scrollY > 30);
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -28,8 +27,13 @@ const Navigation = () => {
 
   const menuItems = [
     { label: "课程体系", id: "courses" },
-    { label: "年度课程表", id: "schedule" },
-    { label: "讲师团队", id: "teachers" },
+    { label: "原声体验", id: "soundboard" },
+    { label: "水平测评", id: "assessment" },
+    { label: "教学闭环", id: "learning-loop" },
+    { label: "年度课表", id: "schedule" },
+    { label: "办学优势", id: "comparison" },
+    { label: "价格特惠", id: "pricing" },
+    { label: "师资团队", id: "teachers" },
     { label: "家长口碑", id: "testimonials" },
     { label: "常见问题", id: "faq" },
   ];
@@ -38,29 +42,37 @@ const Navigation = () => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md shadow-md"
-          : "bg-white/90 backdrop-blur-sm"
+          ? "bg-[#FFFDF9]/95 backdrop-blur-md shadow-sm border-b border-stone-200/60 py-2.5"
+          : "bg-[#FFFDF9]/80 backdrop-blur-xs py-4"
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-16">
-          {/* Logo */}
-          <div className="flex items-center space-x-2">
-            <div className="w-8 h-8 bg-rose-500 rounded-lg flex items-center justify-center">
-              <span className="text-white font-bold text-sm">T</span>
+        <div className="flex justify-between items-center">
+          {/* Brand Logo */}
+          <button
+            onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+            className="flex items-center space-x-2.5 group text-left focus:outline-none"
+          >
+            <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-[#F05A47] to-[#E03824] flex items-center justify-center shadow-sm shadow-rose-500/20 text-white transition-transform group-hover:scale-105">
+              <MessageCircle className="w-5 h-5 fill-white/20 stroke-[2.2]" />
             </div>
-            <span className="text-xl font-bold text-gray-900">
-              TinyTalkers<span className="text-sm ml-1 text-gray-600">童言英语</span>
-            </span>
-          </div>
+            <div className="flex flex-col">
+              <span className="text-xl font-bold tracking-tight text-slate-900 group-hover:text-[#F05A47] transition-colors leading-none">
+                TinyTalkers
+              </span>
+              <span className="text-xs font-medium text-slate-500 tracking-wider mt-0.5">
+                童言少儿英语
+              </span>
+            </div>
+          </button>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden xl:flex items-center space-x-0.5 bg-stone-100/80 p-1.5 rounded-full border border-stone-200/60">
             {menuItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
-                className="text-gray-700 hover:text-blue-600 transition-colors duration-200 font-medium"
+                className="px-3 py-1.5 text-xs font-medium text-slate-600 hover:text-slate-900 hover:bg-white rounded-full transition-all duration-200 whitespace-nowrap"
               >
                 {item.label}
               </button>
@@ -68,46 +80,50 @@ const Navigation = () => {
           </div>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden sm:flex items-center space-x-3">
             <Button
               onClick={() => scrollToSection("booking")}
+              className="bg-[#F05A47] hover:bg-[#DE4936] text-white shadow-sm hover:shadow font-medium px-5 rounded-full transition-all duration-200"
             >
-              立即预约
+              <Sparkles className="w-4 h-4 mr-1.5" />
+              免费预约试听
             </Button>
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="xl:hidden flex items-center">
             <button
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              className="text-gray-700 hover:text-blue-600"
+              className="p-2 text-slate-700 hover:text-[#F05A47] focus:outline-none"
+              aria-label="切换菜单"
             >
-              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+              {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Menu */}
+        {/* Mobile Menu Dropdown */}
         {isMobileMenuOpen && (
-          <div className="md:hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1 bg-white/95 backdrop-blur-md border-t">
+          <div className="xl:hidden mt-3 pt-2 pb-4 px-3 bg-white/95 backdrop-blur-xl border border-stone-200/80 rounded-2xl shadow-xl space-y-1">
+            <div className="grid grid-cols-2 gap-1 pb-2 border-b border-stone-100">
               {menuItems.map((item) => (
                 <button
                   key={item.id}
                   onClick={() => scrollToSection(item.id)}
-                  className="block px-3 py-2 text-gray-700 hover:text-blue-600 hover:bg-gray-50 rounded-md w-full text-left"
+                  className="px-3 py-2 text-left text-xs font-medium text-slate-700 hover:text-[#F05A47] hover:bg-rose-50/50 rounded-xl transition-colors"
                 >
                   {item.label}
                 </button>
               ))}
-              <div className="px-3 py-2">
-                <Button
-                  onClick={() => scrollToSection("booking")}
-                  className="w-full"
-                >
-                  立即预约
-                </Button>
-              </div>
+            </div>
+            <div className="pt-2">
+              <Button
+                onClick={() => scrollToSection("booking")}
+                className="w-full bg-[#F05A47] hover:bg-[#DE4936] text-white py-5 rounded-xl font-medium text-xs sm:text-sm"
+              >
+                <Sparkles className="w-4 h-4 mr-1.5" />
+                免费预约试听（2节体验课）
+              </Button>
             </div>
           </div>
         )}

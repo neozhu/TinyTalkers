@@ -1,16 +1,11 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { AmbientBackgroundBlobs } from "@/components/background-decorations";
 import "./globals.css";
 
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
-});
-
 export const metadata: Metadata = {
-  title: "TinyTalkers童言英语 - 双语未来，从小开始",
-  description: "专业少儿英语培训，3-12岁分龄教学，启蒙期、系统学习期、强化期三大课程体系，让孩子在兴趣中学，在互动中用，在成果中成长！",
-  keywords: "少儿英语,英语培训,幼儿英语,小学英语,英语启蒙,双语教育",
+  title: "TinyTalkers 童言少儿英语 - 双语未来，从小自信开口",
+  description: "专业 3–12 岁少儿英语培训机构。启蒙期、系统学习期、强化期三大阶梯课程体系，沉浸式小班纯正母语情景教学，免费试听2节精品课！",
+  keywords: "少儿英语,少儿英语培训,幼小英语衔接,剑桥少儿英语,自然拼读,英语启蒙,双语教育",
 };
 
 export default function RootLayout({
@@ -19,11 +14,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="zh-CN">
-      <body
-        className={`${inter.variable} font-sans antialiased`}
-      >
-        {children}
+    <html lang="zh-CN" className="scroll-smooth">
+      <body className="min-h-screen bg-[#FFFDF9] text-slate-800 font-sans antialiased relative selection:bg-rose-500/20 selection:text-rose-950">
+        <AmbientBackgroundBlobs />
+        <div className="relative z-10">
+          {children}
+        </div>
       </body>
     </html>
   );

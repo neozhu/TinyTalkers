@@ -8,8 +8,7 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
-import { Card, CardContent } from "@/components/ui/card";
-import { MessageCircle, Phone, Clock } from "lucide-react";
+import { HelpCircle, Phone, MessageCircle, CalendarCheck, Sparkles, ArrowRight } from "lucide-react";
 
 const FAQSection = () => {
   const scrollToBooking = () => {
@@ -21,167 +20,140 @@ const FAQSection = () => {
 
   const faqs = [
     {
-      question: "是否提供免费试听课？",
-      answer: "是的！我们为每位新学员提供2节免费试听课。您可以带孩子先体验我们的教学方式和课堂氛围，满意后再决定是否报名。试听课需要提前预约，我们会根据孩子的年龄安排合适的班级。"
+      question: "试听课是真的免费吗？包含哪些具体内容？",
+      answer: "完全免费，无任何押金或隐形绑定！每位新学员均享 2 节全真小班体验课，包含：\n1. 课前 1 对 1 专业英语水平能力评测；\n2. 45 分钟沉浸式外教真实课堂体验；\n3. 课后出具多维语言素养诊断报告与专属阶段规划方案。"
     },
     {
-      question: "课程的上课频率和时长是怎样的？",
-      answer: "不同阶段的课程安排如下：\n• 启蒙期（3-6岁）：30-40分钟/课，每周2次\n• 系统学习期（6-10岁）：50-60分钟/课，每周2-3次\n• 强化期（10岁+）：60-90分钟/课，每周2-3次\n\n我们根据不同年龄段孩子的专注力特点设计课时长度，确保学习效果最大化。"
+      question: "孩子没有任何英语基础，能跟上全英文小班吗？",
+      answer: "完全不用担心！对于 3–6 岁启蒙期孩子，我们采用国际成熟的 TPR（Total Physical Response 全身反应法）与多感官情景教学。老师通过夸张的肢体语言、生动教具、趣味儿歌与绘本引导，孩子即使不认识单词，也能像习得母语一样依靠情景理解并自然模仿发音。同时每个班级均配备专职双语助教老师，随时关照孩子的心理状态。"
     },
     {
-      question: "如何确定孩子适合哪个阶段的课程？",
-      answer: "我们会为每位新学员进行免费的英语水平测试，包括：\n• 听力理解测试\n• 口语表达评估\n• 词汇量检测\n• 学习兴趣调查\n\n根据测试结果和孩子的年龄、性格特点，我们会推荐最适合的课程阶段，确保孩子能够跟上学习进度并获得成就感。"
+      question: "班级人数一般多少人？老师能否照顾到每个孩子？",
+      answer: "我们严格恪守精品小班制原则：\n• 启蒙期：6–8 人/班\n• 系统学习期：6–10 人/班\n• 强化期：6–12 人/班\n\n小班制确保每节课每个孩子平均有 15 次以上单独开口互动机会，彻底告别传统机构‘大班只听不练、默默当观众’的弊端。"
     },
     {
-      question: "班级规模是多少？师生比如何？",
-      answer: "我们坚持小班制教学：\n• 启蒙期：6-8人/班\n• 系统学习期：6-10人/班\n• 强化期：6-12人/班\n\n每班配备1名主教老师和1名助教，确保每个孩子都能得到充分的关注和个性化指导。小班制让孩子有更多开口练习的机会。"
+      question: "如果临时有事需要请假或调课，补课政策是怎样的？",
+      answer: "我们提供高度灵活的人性化调补课机制：\n• 提前 24 小时在家长端小程序请假，不扣除课时；\n• 支持同级别其他班级跨班补课，或由助教安排一对一核心知识点回放串讲；\n• 因家庭长途旅行或生病，可申请最长 3 个月休学期，学位与课时全额保留。"
     },
     {
-      question: "如果孩子需要请假或退课，有什么政策？",
-      answer: "我们的请假和退课政策如下：\n• 请假：提前24小时通知可安排补课\n• 退课：开课7天内可无理由退费\n• 转班：可根据学习进度调整班级\n• 休学：最长可申请3个月休学，保留学位\n\n我们理解每个家庭的实际情况，会尽力为您提供灵活的解决方案。"
+      question: "外教老师都有哪些资质？发音和教学品质如何保障？",
+      answer: "TinyTalkers 的授课外教录取率仅为 2.8%：\n• 100% 来自以英语为母语的国家（英、美、加、澳）；\n• 100% 持有国际公认的 TESOL / TEFL / CELTA 国际英语教师认证资格；\n• 拥有 5 年以上少儿一线教育经验，并通过严格的儿童心理学考核与背景调查。"
     },
     {
-      question: "家长可以了解孩子的学习进度吗？",
-      answer: "当然可以！我们提供多种家校沟通方式：\n• 每节课后的学习反馈\n• 每月的学习报告\n• 家长微信群实时沟通\n• 每季度的家长会\n• 阶段性测评报告\n• 学习视频分享\n\n家长还可以预约与老师一对一沟通，讨论孩子的学习情况和改进建议。"
-    },
-    {
-      question: "你们的老师都有什么资质？",
-      answer: "我们的教师团队都具备专业资质：\n• 100%持有TESOL/TEFL等国际英语教学证书\n• 本科及以上学历，英语或教育相关专业\n• 平均6年以上少儿英语教学经验\n• 定期参加教学培训和考核\n• 具备儿童心理学基础知识\n\n所有老师在上岗前都要经过严格的面试、试讲和培训。"
-    },
-    {
-      question: "课程费用包含哪些内容？",
-      answer: "课程费用全包含以下内容：\n• 所有课堂教学费用\n• 教材和学习资料\n• 学习用品（练习册、贴纸等）\n• 阶段性测评\n• 学习报告制作\n• 家长沟通服务\n• 节日活动和展示会\n\n没有任何隐性收费，让家长明明白白消费。"
+      question: "家长如何实时掌握孩子在校的学习进度与反馈？",
+      answer: "我们建立了一体化家校透明共育体系：\n• 每节课后：教师微信群发送当日核心词汇句型与学员课堂精彩发音短视频；\n• 每月末：出具学员阶段性学情档案与词汇掌握度雷达图；\n• 每季度：举办 1 对 1 家长面谈会，深入沟通下一步成长目标。"
     }
   ];
 
   const contactOptions = [
     {
       icon: Phone,
-      title: "电话咨询",
-      description: "400-123-4567",
-      action: "立即拨打"
+      title: "官方咨询热线",
+      description: "400-880-6899",
+      subtext: "工作日 09:00 - 20:30"
     },
     {
       icon: MessageCircle,
-      title: "在线咨询",
-      description: "微信客服在线解答",
-      action: "添加微信"
+      title: "微信顾问一对一",
+      description: "添加课程规划师",
+      subtext: "5分钟内响应解答"
     },
     {
-      icon: Clock,
-      title: "预约参观",
-      description: "实地了解教学环境",
-      action: "立即预约"
+      icon: CalendarCheck,
+      title: "校区开放日探访",
+      description: "实地参观沉浸式教室",
+      subtext: "亲子绘本馆免费开放"
     }
   ];
 
   return (
-    <section id="faq" className="py-20 bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="faq" className="py-24 bg-gradient-to-b from-[#FFFDF9] via-stone-50/50 to-[#FFFDF9] border-t border-stone-200/60 relative overflow-hidden">
+      {/* Background Soft Glow */}
+      <div 
+        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[750px] h-[450px] opacity-20 blur-3xl pointer-events-none z-0"
+        style={{
+          background: "radial-gradient(circle, rgba(254, 243, 199, 0.4) 0%, rgba(254, 215, 170, 0.25) 50%, transparent 75%)"
+        }}
+      />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            常见问题
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-stone-100 border border-stone-200 text-xs font-semibold text-slate-700 mb-3">
+            <HelpCircle className="w-3.5 h-3.5 text-slate-600" />
+            <span>解开您的每一个顾虑</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            家长最关心的热点问题
           </h2>
-          <p className="text-xl text-gray-600">
-            解答家长最关心的问题，让您更了解我们的课程
+          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+            透明、真诚的解答，让您在做决定前清晰了解每一个细节。
           </p>
-        </motion.div>
+        </div>
 
         {/* FAQ Accordion */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="mb-16"
-        >
+        <div className="mb-16">
           <Accordion type="single" collapsible className="w-full space-y-4">
             {faqs.map((faq, index) => (
               <AccordionItem
                 key={index}
                 value={`item-${index}`}
-                className="bg-white rounded-lg border border-gray-200 px-6"
+                className="bg-[#FFFDF9] rounded-2xl border border-stone-200/80 px-6 data-[state=open]:border-[#F05A47]/40 data-[state=open]:bg-white transition-all shadow-xs"
               >
-                <AccordionTrigger className="text-left hover:no-underline py-6">
-                  <span className="text-lg font-semibold text-gray-900">
-                    {faq.question}
-                  </span>
+                <AccordionTrigger className="text-left hover:no-underline py-5 text-base sm:text-lg font-bold text-slate-900">
+                  {faq.question}
                 </AccordionTrigger>
-                <AccordionContent className="pb-6">
-                  <div className="text-gray-700 leading-relaxed whitespace-pre-line">
-                    {faq.answer}
-                  </div>
+                <AccordionContent className="pb-6 text-sm text-slate-600 leading-relaxed whitespace-pre-line border-t border-stone-100 pt-4">
+                  {faq.answer}
                 </AccordionContent>
               </AccordionItem>
             ))}
           </Accordion>
-        </motion.div>
+        </div>
 
-        {/* Contact Options */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-6 mb-12"
-        >
-          {contactOptions.map((option, index) => {
-            const IconComponent = option.icon;
+        {/* Contact Options Cards */}
+        <div className="grid sm:grid-cols-3 gap-6 mb-14">
+          {contactOptions.map((opt, idx) => {
+            const IconComp = opt.icon;
             return (
-              <Card key={option.title} className="text-center">
-                <CardContent>
-                  <div className="w-12 h-12 bg-rose-500 rounded-lg mx-auto mb-4 flex items-center justify-center">
-                    <IconComponent className="w-6 h-6 text-white" />
+              <div
+                key={idx}
+                className="p-5 rounded-2xl bg-[#FFFDF9] border border-stone-200/80 text-center flex flex-col justify-between"
+              >
+                <div>
+                  <div className="w-10 h-10 rounded-xl bg-rose-50 text-[#F05A47] mx-auto mb-3 flex items-center justify-center">
+                    <IconComp className="w-5 h-5 stroke-[2]" />
                   </div>
-                  <h3 className="font-semibold text-gray-900 mb-2">{option.title}</h3>
-                  <p className="text-sm text-gray-600 mb-4">{option.description}</p>
-                  <Button
-                    onClick={scrollToBooking}
-                    variant="outline"
-                    size="sm"
-                    className="border-rose-600 text-rose-600 hover:bg-rose-50"
-                  >
-                    {option.action}
-                  </Button>
-                </CardContent>
-              </Card>
+                  <h3 className="text-sm font-bold text-slate-900 mb-1">{opt.title}</h3>
+                  <div className="text-sm font-semibold text-slate-800">{opt.description}</div>
+                  <div className="text-[11px] text-slate-400 mt-1">{opt.subtext}</div>
+                </div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
 
-        {/* Bottom CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center"
-        >
-          <div className="bg-rose-500 rounded-2xl p-8 text-white">
-            <h3 className="text-2xl font-bold mb-4">
-              还有其他问题？
+        {/* Bottom Banner */}
+        <div className="rounded-3xl p-8 sm:p-10 bg-gradient-to-r from-stone-900 to-slate-900 text-white text-center shadow-lg relative overflow-hidden">
+          <div className="relative z-10 max-w-xl mx-auto">
+            <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/10 text-white/90 text-xs font-semibold mb-4">
+              <Sparkles className="w-3.5 h-3.5 text-amber-400" />
+              名额有限 · 本月仅余 35 个试听席位
+            </span>
+            <h3 className="text-2xl sm:text-3xl font-extrabold tracking-tight mb-3">
+              仍有疑问？不妨直接带孩子来体验
             </h3>
-            <p className="text-lg opacity-90 mb-6">
-              我们的课程顾问随时为您答疑解惑
-              <br />
-              预约咨询，获得专业的学习规划建议
+            <p className="text-sm text-slate-300 leading-relaxed mb-6">
+              孩子的真实笑容和开口表现，就是最好的答案。立即免费锁定试听名额。
             </p>
             <Button
               onClick={scrollToBooking}
-              size="lg"
-              className="bg-white text-rose-600 hover:bg-gray-100 font-semibold"
+              className="bg-[#F05A47] hover:bg-[#DE4936] text-white font-semibold px-8 py-6 rounded-xl text-sm shadow-md"
             >
-              立即咨询
+              立即预约 2 节免费试听
+              <ArrowRight className="w-4 h-4 ml-1.5" />
             </Button>
           </div>
-        </motion.div>
+        </div>
       </div>
     </section>
   );

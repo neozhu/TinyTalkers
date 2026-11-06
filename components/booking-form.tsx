@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -14,7 +13,17 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { CheckCircle, AlertCircle, Send, Calendar, Gift } from "lucide-react";
+import { 
+  CheckCircle2, 
+  AlertCircle, 
+  Send, 
+  CalendarDays, 
+  Gift, 
+  ShieldCheck, 
+  Sparkles,
+  PhoneCall,
+  Lock
+} from "lucide-react";
 import { bookingSchema, type BookingFormData } from "@/lib/validations";
 
 const BookingForm = () => {
@@ -80,7 +89,7 @@ const BookingForm = () => {
         setErrors({ submit: result.message || '提交失败，请稍后重试' });
       }
     } catch (error) {
-      setErrors({ submit: '网络错误，请稍后重试' });
+      setErrors({ submit: '网络连接异常，请检查网络后重试' });
     } finally {
       setIsSubmitting(false);
     }
@@ -93,53 +102,60 @@ const BookingForm = () => {
     }
   };
 
-  const benefits = [
+  const trialPerks = [
     {
       icon: Gift,
-      title: "免费试听2节课",
-      description: "零风险体验教学质量"
+      title: "免费体验 2 节小班课",
+      description: "零门槛真实融入课堂，亲身体验沉浸式互动教学效果"
     },
     {
-      icon: Calendar,
-      title: "免费水平测试",
-      description: "专业评估学习起点"
+      icon: CalendarDays,
+      title: "1对1 专业英语测评",
+      description: "包含发音感知、词汇理解与逻辑表达多维能力诊断"
     },
     {
-      icon: CheckCircle,
-      title: "个性化学习方案",
-      description: "量身定制课程计划"
+      icon: CheckCircle2,
+      title: "专属个性化成长规划",
+      description: "资深教研根据测评结果量身出具阶段性进阶方案"
     }
+  ];
+
+  const steps = [
+    { num: "1", title: "在线提交预约信息", desc: "仅需 30 秒填写基本情况" },
+    { num: "2", title: "课程顾问电话确认", desc: "沟通孩子基础与校区时间" },
+    { num: "3", title: "到校沉浸试听体验", desc: "45分钟全真小班互动" },
+    { num: "4", title: "领取综合评估报告", desc: "客观反馈，满意后再报名" },
   ];
 
   if (isSubmitted) {
     return (
-      <section id="booking" className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <section id="booking" className="py-24 bg-white border-t border-stone-200/60">
+        <div className="max-w-xl mx-auto px-4 text-center">
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="text-center"
+            transition={{ duration: 0.5 }}
+            className="p-8 sm:p-10 rounded-3xl bg-[#FFFDF9] border border-emerald-200 shadow-md"
           >
-            <Card className="max-w-md mx-auto">
-              <CardContent>
-                <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle className="w-8 h-8 text-green-600" />
-                </div>
-                <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                  预约成功！
-                </h3>
-                <p className="text-gray-600 mb-6">
-                  感谢您的信任！我们的课程顾问将在24小时内与您联系，为您安排免费试听课程。
-                </p>
-                <Button
-                  onClick={() => setIsSubmitted(false)}
-                  className="w-full"
-                >
-                  继续了解课程
-                </Button>
-              </CardContent>
-            </Card>
+            <div className="w-16 h-16 bg-emerald-100 rounded-2xl flex items-center justify-center mx-auto mb-5 text-emerald-600">
+              <CheckCircle2 className="w-9 h-9 stroke-[2.2]" />
+            </div>
+            <h3 className="text-2xl font-black text-slate-900 mb-2">
+              预约申请提交成功！
+            </h3>
+            <p className="text-sm text-slate-600 mb-6 leading-relaxed">
+              感谢您的信任！TinyTalkers 课程顾问将在 <span className="font-bold text-slate-900">2 小时内</span>（工作时间）通过电话与您确认孩子的试听校区与课表安排。
+            </p>
+            <div className="p-4 rounded-xl bg-white border border-stone-200/80 text-xs text-slate-500 mb-6 text-left space-y-1">
+              <div>• 顾问将提前发送课前预习绘本及教室导航地图</div>
+              <div>• 如遇紧急需求，可直接拨打服务专线：400-880-6899</div>
+            </div>
+            <Button
+              onClick={() => setIsSubmitted(false)}
+              className="w-full bg-slate-900 hover:bg-slate-800 text-white font-semibold py-5 rounded-xl text-sm"
+            >
+              返回继续浏览
+            </Button>
           </motion.div>
         </div>
       </section>
@@ -147,50 +163,50 @@ const BookingForm = () => {
   }
 
   return (
-    <section id="booking" className="py-20">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="booking" className="py-24 bg-[#FFFDF9] border-t border-stone-200/60 relative overflow-hidden">
+      {/* Background Soft Glow Behind Booking Form */}
+      <div 
+        className="absolute bottom-10 right-10 w-[700px] h-[500px] opacity-25 blur-3xl pointer-events-none z-0"
+        style={{
+          background: "radial-gradient(ellipse at center, rgba(254, 215, 170, 0.45) 0%, rgba(240, 90, 71, 0.15) 50%, transparent 75%)"
+        }}
+      />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <h2 className="text-4xl font-bold text-gray-900 mb-4">
-            立即预约试听
+        <div className="text-center max-w-2xl mx-auto mb-16">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-rose-50 border border-rose-200 text-xs font-semibold text-rose-700 mb-3">
+            <Sparkles className="w-3.5 h-3.5 text-[#F05A47]" />
+            <span>开启孩子的双语探索之旅</span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            立即预约 2 节免费试听
           </h2>
-          <p className="text-xl text-gray-600">
-            填写预约信息，开启孩子的英语学习之旅
+          <p className="mt-4 text-base sm:text-lg text-slate-600 leading-relaxed">
+            带孩子零风险亲身感受课堂魅力，满意再入学。
           </p>
-        </motion.div>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 items-start">
-          {/* Benefits */}
-          <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            viewport={{ once: true }}
-            className="space-y-8"
-          >
+        <div className="grid lg:grid-cols-12 gap-12 items-start">
+          {/* Left Column: Perks & Process */}
+          <div className="lg:col-span-5 space-y-8">
             <div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">
-                预约即享专属福利
+              <h3 className="text-xl font-bold text-slate-900 mb-5">
+                试听课专属礼遇
               </h3>
-              <div className="space-y-6">
-                {benefits.map((benefit, index) => {
-                  const IconComponent = benefit.icon;
+              <div className="space-y-4">
+                {trialPerks.map((perk, idx) => {
+                  const IconComp = perk.icon;
                   return (
-                    <div key={benefit.title} className="flex items-start space-x-4">
-                      <div className="w-12 h-12 bg-rose-500 rounded-lg flex items-center justify-center flex-shrink-0">
-                        <IconComponent className="w-6 h-6 text-white" />
+                    <div
+                      key={idx}
+                      className="p-4 rounded-2xl bg-white border border-stone-200/80 shadow-xs flex items-start gap-3.5"
+                    >
+                      <div className="w-10 h-10 rounded-xl bg-rose-50 flex items-center justify-center shrink-0 text-[#F05A47]">
+                        <IconComp className="w-5 h-5 stroke-[2]" />
                       </div>
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">
-                          {benefit.title}
-                        </h4>
-                        <p className="text-gray-600">{benefit.description}</p>
+                        <h4 className="text-sm font-bold text-slate-900">{perk.title}</h4>
+                        <p className="text-xs text-slate-600 mt-0.5 leading-relaxed">{perk.description}</p>
                       </div>
                     </div>
                   );
@@ -198,187 +214,202 @@ const BookingForm = () => {
               </div>
             </div>
 
-            <div className="bg-white rounded-xl p-6 shadow-sm">
-              <h4 className="font-semibold text-gray-900 mb-4">预约流程</h4>
-              <div className="space-y-3">
-                <div className="flex items-center text-sm text-gray-600">
-                  <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-semibold mr-3">1</div>
-                  填写预约信息
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-semibold mr-3">2</div>
-                  课程顾问电话联系
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-semibold mr-3">3</div>
-                  安排免费试听课程
-                </div>
-                <div className="flex items-center text-sm text-gray-600">
-                  <div className="w-6 h-6 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center text-xs font-semibold mr-3">4</div>
-                  制定个性化学习方案
-                </div>
+            {/* Steps Timeline Box */}
+            <div className="p-6 rounded-2xl bg-white border border-stone-200/80 shadow-xs">
+              <h4 className="text-sm font-bold text-slate-900 mb-4 flex items-center gap-2">
+                <PhoneCall className="w-4 h-4 text-emerald-600" />
+                极速服务流程
+              </h4>
+              <div className="space-y-3.5">
+                {steps.map((st) => (
+                  <div key={st.num} className="flex items-start gap-3">
+                    <div className="w-6 h-6 rounded-full bg-stone-100 border border-stone-200 text-slate-700 flex items-center justify-center text-xs font-bold shrink-0">
+                      {st.num}
+                    </div>
+                    <div>
+                      <div className="text-xs font-bold text-slate-800">{st.title}</div>
+                      <div className="text-[11px] text-slate-500">{st.desc}</div>
+                    </div>
+                  </div>
+                ))}
               </div>
             </div>
-          </motion.div>
 
-          {/* Booking Form */}
-          <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            <Card>
-              <CardHeader>
-                <CardTitle className="text-2xl font-bold text-gray-900">
-                  预约试听课程
-                </CardTitle>
-                <CardDescription>
-                  请填写以下信息，我们将为您安排合适的试听时间
-                </CardDescription>
-              </CardHeader>
+            {/* Privacy Guarantee */}
+            <div className="flex items-center gap-2 text-xs text-slate-500 bg-stone-100/70 p-3.5 rounded-xl border border-stone-200/60">
+              <Lock className="w-4 h-4 text-slate-600 shrink-0" />
+              <span>我们严格遵循隐私保护规范，您的信息仅用于排课联系，严禁外泄。</span>
+            </div>
+          </div>
 
-              <CardContent>
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  {/* Parent Name */}
-                  <div className="space-y-2">
-                    <Label htmlFor="parentName" className="text-sm font-medium text-gray-700">
-                      家长姓名 <span className="text-red-500">*</span>
-                    </Label>
-                    <Input
-                      id="parentName"
-                      type="text"
-                      placeholder="请输入家长姓名"
-                      value={formData.parentName}
-                      onChange={(e) => handleInputChange('parentName', e.target.value)}
-                      className={errors.parentName ? 'border-red-500' : ''}
-                    />
-                    {errors.parentName && (
-                      <p className="text-sm text-red-500 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.parentName}
-                      </p>
-                    )}
-                  </div>
+          {/* Right Column: High-Craft Booking Form */}
+          <div className="lg:col-span-7">
+            <div className="bg-white rounded-3xl p-7 sm:p-9 border border-stone-200/90 shadow-md">
+              <div className="mb-6">
+                <h3 className="text-xl sm:text-2xl font-bold text-slate-900">
+                  填写试听预约信息
+                </h3>
+                <p className="text-xs sm:text-sm text-slate-500 mt-1">
+                  请填写以下信息，我们的教研顾问将为您快速匹配对应年级班次
+                </p>
+              </div>
 
-                  {/* Phone */}
-                  <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-sm font-medium text-gray-700">
-                      手机号码 <span className="text-red-500">*</span>
-                    </Label>
-                    <Input
-                      id="phone"
-                      type="tel"
-                      placeholder="请输入手机号码"
-                      value={formData.phone}
-                      onChange={(e) => handleInputChange('phone', e.target.value)}
-                      className={errors.phone ? 'border-red-500' : ''}
-                    />
-                    {errors.phone && (
-                      <p className="text-sm text-red-500 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.phone}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Child Age */}
-                  <div className="space-y-2">
-                    <Label htmlFor="childAge" className="text-sm font-medium text-gray-700">
-                      孩子年龄/年级 <span className="text-red-500">*</span>
-                    </Label>
-                    <Input
-                      id="childAge"
-                      type="text"
-                      placeholder="如：5岁 或 小学二年级"
-                      value={formData.childAgeOrGrade}
-                      onChange={(e) => handleInputChange('childAgeOrGrade', e.target.value)}
-                      className={errors.childAgeOrGrade ? 'border-red-500' : ''}
-                    />
-                    {errors.childAgeOrGrade && (
-                      <p className="text-sm text-red-500 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.childAgeOrGrade}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Stage */}
-                  <div className="space-y-2">
-                    <Label htmlFor="stage" className="text-sm font-medium text-gray-700">
-                      意向阶段 <span className="text-red-500">*</span>
-                    </Label>
-                    <Select
-                      value={formData.stage}
-                      onValueChange={(value) => handleInputChange('stage', value)}
-                    >
-                      <SelectTrigger className={errors.stage ? 'border-red-500' : ''}>
-                        <SelectValue placeholder="请选择意向阶段" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="启蒙期">启蒙期（3-6岁）</SelectItem>
-                        <SelectItem value="系统学习期">系统学习期（6-10岁）</SelectItem>
-                        <SelectItem value="强化期">强化期（10岁以上）</SelectItem>
-                      </SelectContent>
-                    </Select>
-                    {errors.stage && (
-                      <p className="text-sm text-red-500 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-1" />
-                        {errors.stage}
-                      </p>
-                    )}
-                  </div>
-
-                  {/* Note */}
-                  <div className="space-y-2">
-                    <Label htmlFor="note" className="text-sm font-medium text-gray-700">
-                      备注信息
-                    </Label>
-                    <Textarea
-                      id="note"
-                      placeholder="请告诉我们孩子的英语基础、学习目标或其他特殊需求"
-                      value={formData.note}
-                      onChange={(e) => handleInputChange('note', e.target.value)}
-                      rows={3}
-                    />
-                  </div>
-
-                  {/* Submit Error */}
-                  {errors.submit && (
-                    <div className="p-4 bg-red-50 border border-red-200 rounded-lg">
-                      <p className="text-sm text-red-600 flex items-center">
-                        <AlertCircle className="w-4 h-4 mr-2" />
-                        {errors.submit}
-                      </p>
-                    </div>
+              <form onSubmit={handleSubmit} className="space-y-5">
+                {/* Parent Name */}
+                <div className="space-y-1.5">
+                  <Label htmlFor="parentName" className="text-xs font-bold text-slate-800">
+                    家长姓名 <span className="text-[#F05A47]">*</span>
+                  </Label>
+                  <Input
+                    id="parentName"
+                    type="text"
+                    placeholder="如：王女士 / 李先生"
+                    value={formData.parentName}
+                    onChange={(e) => handleInputChange('parentName', e.target.value)}
+                    className={`h-11 rounded-xl text-sm ${
+                      errors.parentName ? 'border-red-500 focus-visible:ring-red-500' : 'border-stone-300'
+                    }`}
+                  />
+                  {errors.parentName && (
+                    <p className="text-xs text-red-500 flex items-center gap-1 mt-1">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      {errors.parentName}
+                    </p>
                   )}
+                </div>
 
-                  {/* Submit Button */}
+                {/* Phone */}
+                <div className="space-y-1.5">
+                  <Label htmlFor="phone" className="text-xs font-bold text-slate-800">
+                    联系电话 (用于接收试听短信与排课通知) <span className="text-[#F05A47]">*</span>
+                  </Label>
+                  <Input
+                    id="phone"
+                    type="tel"
+                    placeholder="请输入11位手机号码"
+                    value={formData.phone}
+                    onChange={(e) => handleInputChange('phone', e.target.value)}
+                    className={`h-11 rounded-xl text-sm ${
+                      errors.phone ? 'border-red-500 focus-visible:ring-red-500' : 'border-stone-300'
+                    }`}
+                  />
+                  {errors.phone && (
+                    <p className="text-xs text-red-500 flex items-center gap-1 mt-1">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      {errors.phone}
+                    </p>
+                  )}
+                </div>
+
+                {/* Child Age or Grade */}
+                <div className="space-y-1.5">
+                  <Label htmlFor="childAge" className="text-xs font-bold text-slate-800">
+                    孩子当前年龄 / 年级 <span className="text-[#F05A47]">*</span>
+                  </Label>
+                  <Input
+                    id="childAge"
+                    type="text"
+                    placeholder="如：4岁半 / 幼儿园大班 / 小学二年级"
+                    value={formData.childAgeOrGrade}
+                    onChange={(e) => handleInputChange('childAgeOrGrade', e.target.value)}
+                    className={`h-11 rounded-xl text-sm ${
+                      errors.childAgeOrGrade ? 'border-red-500 focus-visible:ring-red-500' : 'border-stone-300'
+                    }`}
+                  />
+                  {errors.childAgeOrGrade && (
+                    <p className="text-xs text-red-500 flex items-center gap-1 mt-1">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      {errors.childAgeOrGrade}
+                    </p>
+                  )}
+                </div>
+
+                {/* Preferred Stage */}
+                <div className="space-y-1.5">
+                  <Label htmlFor="stage" className="text-xs font-bold text-slate-800">
+                    意向体验阶段 <span className="text-[#F05A47]">*</span>
+                  </Label>
+                  <Select
+                    value={formData.stage}
+                    onValueChange={(value) => handleInputChange('stage', value)}
+                  >
+                    <SelectTrigger 
+                      data-testid="stage-select"
+                      className={`h-11 rounded-xl text-sm ${
+                        errors.stage ? 'border-red-500' : 'border-stone-300'
+                      }`}
+                    >
+                      <SelectValue placeholder="请选择意向阶段" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="启蒙期">启蒙期 (3–6岁) 趣味磨耳朵与自然拼读</SelectItem>
+                      <SelectItem value="系统学习期">系统学习期 (6–10岁) 听说读写全能进阶</SelectItem>
+                      <SelectItem value="强化期">强化期 (10岁+) 学术思辨与考级拔高</SelectItem>
+                    </SelectContent>
+                  </Select>
+                  {errors.stage && (
+                    <p className="text-xs text-red-500 flex items-center gap-1 mt-1">
+                      <AlertCircle className="w-3.5 h-3.5" />
+                      {errors.stage}
+                    </p>
+                  )}
+                </div>
+
+                {/* Optional Note */}
+                <div className="space-y-1.5">
+                  <Label htmlFor="note" className="text-xs font-bold text-slate-800">
+                    补充说明 (选填)
+                  </Label>
+                  <Textarea
+                    id="note"
+                    placeholder="可填写孩子的性格特点、过往学英语经历或期望上课时间（如周六上午）"
+                    value={formData.note}
+                    onChange={(e) => handleInputChange('note', e.target.value)}
+                    rows={2}
+                    className="rounded-xl text-sm border-stone-300"
+                  />
+                </div>
+
+                {/* Submit Error */}
+                {errors.submit && (
+                  <div className="p-3.5 bg-red-50 border border-red-200 rounded-xl text-xs text-red-600 flex items-center gap-2">
+                    <AlertCircle className="w-4 h-4 shrink-0" />
+                    <span>{errors.submit}</span>
+                  </div>
+                )}
+
+                {/* Submit CTA */}
+                <div className="pt-2">
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full text-lg py-6"
+                    className="w-full bg-[#F05A47] hover:bg-[#DE4936] text-white font-bold py-6 rounded-xl text-base shadow-sm hover:shadow-md transition-all cursor-pointer"
                   >
                     {isSubmitting ? (
-                      <div className="flex items-center">
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin mr-2"></div>
-                        提交中...
+                      <div className="flex items-center gap-2">
+                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                        <span>正在为您锁定试听名额...</span>
                       </div>
                     ) : (
-                      <div className="flex items-center">
-                        <Send className="w-4 h-4 mr-2" />
-                        立即预约试听
+                      <div className="flex items-center gap-2">
+                        <Send className="w-4 h-4" />
+                        <span>立即提交 · 免费领取 2 节试听课</span>
                       </div>
                     )}
                   </Button>
+                </div>
 
-                  <p className="text-xs text-gray-500 text-center">
-                    提交即表示您同意我们的服务条款，我们承诺保护您的隐私信息
-                  </p>
-                </form>
-              </CardContent>
-            </Card>
-          </motion.div>
+                <div className="flex items-center justify-center gap-4 text-[11px] text-slate-400 pt-1">
+                  <span className="flex items-center gap-1">
+                    <ShieldCheck className="w-3.5 h-3.5 text-emerald-600" />
+                    试听无任何隐形消费
+                  </span>
+                  <span>•</span>
+                  <span>随时可调换班次时间</span>
+                </div>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>

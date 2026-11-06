@@ -39,3 +39,6 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# Impeccable binaries (downloaded on demand)
+.agents/skills/impeccable/scripts/bin/
